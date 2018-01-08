@@ -12,6 +12,7 @@
             <th class="column-10"><?= $paginator->order(t('Category'), 'tasks.category_id') ?></th>
             <th class="column-10"><?= $paginator->order(t('Assignee'), 'users.username') ?></th>
             <th class="column-10"><?= $paginator->order(t('Due date'), 'tasks.date_due') ?></th>
+            <th class="column-6">任务进度</th>
             <th class="column-8"><?= $paginator->order(t('Status'), 'tasks.is_active') ?></th>
         </tr>
         <?php foreach ($paginator->getCollection() as $task): ?>
@@ -44,6 +45,9 @@
             </td>
             <td>
                 <?= $this->dt->date($task['date_due']) ?>
+            </td>
+            <td>
+                <?= $this->text->e($task['progress']) ?>
             </td>
             <td>
                 <?php if ($task['is_active'] == \Jitamin\Model\TaskModel::STATUS_OPEN): ?>
